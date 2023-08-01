@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {return 'Curso Laravel';});
 
-Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal']);
-Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato']);
+Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index');
+Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
 Route::get('/contato/{nome}/{assunto}/{categoria_id?}', 
     function(
         string $nome, 
@@ -24,14 +24,14 @@ Route::get('/contato/{nome}/{assunto}/{categoria_id?}',
         string $mensagem = 'Mensagem não informada!'){
     echo "Sua solicitação: $nome - $assunto - $mensagem";
 })->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');
-Route::get('/sobre', [\App\Http\Controllers\SobreNosController::class, 'sobre']);
+Route::get('/sobre', [\App\Http\Controllers\SobreNosController::class, 'sobre'])->name('site.sobrenos');
 
-Route::get('/login', function(){return 'Login';});
+Route::get('/login', function(){return 'Login';})->name('site.login');
 
 Route::prefix('/app')->group(function(){
-    Route::get('/clientes',  function(){return 'Clientes';});
-    Route::get('/fornecedores',  function(){return 'Fornecedores';});
-    Route::get('/produtos',  function(){return 'Produtos';});
+    Route::get('/clientes',  function(){return 'Clientes';})->name('app.clientes');
+    Route::get('/fornecedores',  function(){return 'Fornecedores';})->name('app.fornecedores');
+    Route::get('/produtos',  function(){return 'Produtos';})->name('app.produtos');
 });
 
 // Gabriel Lucas
