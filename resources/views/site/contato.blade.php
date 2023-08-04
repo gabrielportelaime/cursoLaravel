@@ -1,7 +1,6 @@
 @extends('layouts.basico')
 @section('titulo', 'Contato')
 @section('conteudo')
-    @include('layouts.partials.topo')
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
             <h1>Entre em contato conosco</h1>
