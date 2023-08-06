@@ -1,7 +1,6 @@
 @extends('layouts.basico')
 @section('titulo', 'Sobre Nós')
 @section('conteudo')
-    @include('layouts.partials.topo')
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
             <h1>Olá, eu sou o Super Gestão</h1>

@@ -7,6 +7,7 @@
     </head>
 
     <body>
+        @include('layouts.partials.topo')
         @yield('conteudo')
     </body>
 </html>
