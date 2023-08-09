@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fornecedor extends Model
 {
     protected $table = 'fornecedores';
+    protected $fillable = ['nome', 'site', 'uf', 'email'];
     //Para poder persistir os dados corretamente, pois a geração automática da tabela seria fornecedors --> errado
     use HasFactory;
 }
