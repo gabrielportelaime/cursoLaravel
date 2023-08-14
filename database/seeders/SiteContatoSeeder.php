@@ -22,6 +22,6 @@ class SiteContatoSeeder extends Seeder
         // $contato->motivo_contato = 1;
         // $contato->mensagem = 'Elogio bom';
         // $contato->save();
-        SiteContato::factory()->count(100)->create();
+        SiteContato::factory()->count(10)->create();
     }
 }
