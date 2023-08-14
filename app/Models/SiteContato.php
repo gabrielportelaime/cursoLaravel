@@ -12,6 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SiteContato extends Model
 {
-    protected $fillable = ['nome', 'telefone', 'email', 'motivo_contato', 'mensagem'];
+    protected $fillable = ['nome', 'telefone', 'email', 'motivo_contatos_id', 'mensagem'];
     use HasFactory;
 }
