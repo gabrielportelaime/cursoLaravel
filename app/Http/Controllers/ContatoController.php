@@ -27,7 +27,7 @@ class ContatoController extends Controller
         //Realizar a validação dos dados antes de salvar
         $request->validate([
             'nome' => 'min:3|max:40',
-            'telefone' => 'required',
+            'telefone' => 'required|min:10|max:20',
             'email' => 'required',
             'motivo_contato' => 'required',
             'mensagem' => 'required|max:2000'

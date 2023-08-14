@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SiteContato>
  */
@@ -18,7 +17,7 @@ class SiteContatoFactory extends Factory
     {
         return [
             'nome' => fake()->name(),
-            'telefone' => fake()->phoneNumber(),
+            'telefone' => fake()->e164PhoneNumber(),
             'email' => fake()->unique()->email(),
             'motivo_contato' => fake()->numberBetween(1,3),
             'mensagem' => fake()->text(200)
