@@ -1,11 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LogAcessoMiddleware;
 
 // Route::get('/', function () {return 'Curso Laravel';});
 
-Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index');
-Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
+Route::middleware(LogAcessoMiddleware::class)
+    ->get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])
+    ->name('site.index');
+
+Route::middleware(LogAcessoMiddleware::class)
+    ->get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])
+    ->name('site.contato');
 Route::post('/contato', [\App\Http\Controllers\ContatoController::class, 'salvar'])->name('site.contato');
 Route::get('/contato/{nome}/{assunto}/{categoria_id?}', 
     function(

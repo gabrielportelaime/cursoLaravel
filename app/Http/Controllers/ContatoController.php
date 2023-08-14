@@ -8,30 +8,15 @@ class ContatoController extends Controller
 {
     public function contato(){
         $motivo_contatos = MotivoContato::all();
-        // var_dump($_POST);
-        // echo '<pre>';
-        // print_r($request->all());
-        // echo '</pre>';
-        // $nome = $request->input('nome');
-        // $email = $request->input('email');
-        // echo '<br>' . $nome . '<br>' . $email . '<br>';
-        // $contato = new SiteContato();
-        // $contato->nome = $request->input('nome');
-        // $contato->telefone = $request->input('telefone');
-        // $contato->email = $request->input('email');
-        // $contato->motivo_contato = $request->input('motivo_contato');
-        // $contato->mensagem = $request->input('mensagem');
-        // $contato->create($request->all());
-        // $contato->save();
         return view('site.contato', ['motivo_contatos' => $motivo_contatos]);
     }
     public function salvar(Request $request){
         //Realizar a validação dos dados antes de salvar
-        $request->validate([
-            'nome' => 'min:3|max:40',
+        $regras = [
+            'nome' => 'required|min:3|max:40|unique:site_contatos',
             'telefone' => 'required',
-            'email' => 'required',
-            'motivo_contato' => 'required',
+            'email' => 'email',
+            'motivo_contatos_id' => 'required',
             'mensagem' => 'required|max:2000'
         ];
         $respostas = [
@@ -47,5 +32,4 @@ class ContatoController extends Controller
         SiteContato::create($request->all());
         return redirect()->route('site.index');
     }
-    // TESTE DE COMMIT
 }

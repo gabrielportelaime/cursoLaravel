@@ -2,9 +2,7 @@
 <form action={{ route('site.contato') }} method="post">
     @csrf
     <input name="nome" value="{{ old('nome') }}" type="text" placeholder="Nome" class="{{ $classe }}">
-    @if($errors->has('nome'))
-        {{ $errors->first('nome') }}
-    @endif
+    {{$errors->has('nome') ? $errors->first('nome') : ''}}
     <br>
     <input name="telefone" value="{{ old('telefone') }}" type="text" placeholder="Telefone" class="{{ $classe }}">
     {{$errors->has('telefone') ? $errors->first('telefone') : ''}}
@@ -20,19 +18,17 @@
     </select>
     {{$errors->has('motivo_contatos_id') ? $errors->first('motivo_contatos_id') : ''}}
     <br>
-    <textarea name="mensagem" class="{{ $classe }}">
-        @if(old('mensagem') != '')
-            {{ old('mensagem') }}
-        @else
-            Preencha aqui a sua mensagem
-        @endif
-    </textarea>
+    <textarea name="mensagem" class="{{ $classe }}">{{ (old('mensagem') != '') ? old('mensagem') : 'Preencha aqui a sua mensagem'}}</textarea>
+    {{$errors->has('mensagem') ? $errors->first('mensagem') : ''}}
     <br>
     <button type="submit" class="{{ $classe }}">ENVIAR</button>
 </form>
 
-<div style="position:absolute; top:0px; width:100%; background:red">
-    <pre>
-        {{ print_r($errors) }}
-    </pre>
-</div>
+@if($errors->any())
+    <div style="background: #6C7A89;display: flex;flex-direction: row;justify-content: center;align-items: center;">
+        @foreach ($errors->all() as $erro)
+            {{ $erro }}
+            <br>
+        @endforeach
+    </div>
+@endif
