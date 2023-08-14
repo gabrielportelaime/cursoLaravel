@@ -9,7 +9,7 @@ class ContatoController extends Controller
         $motivo_contatos = [
             1 => 'Dúvida',
             2 => 'Elogio',
-            3 => 'Reclamação'
+            3 => 'Reclamação',
         ];
         // var_dump($_POST);
         // echo '<pre>';
