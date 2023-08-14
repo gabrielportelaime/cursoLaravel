@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MotivoContato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SiteContato>
@@ -15,11 +16,14 @@ class SiteContatoFactory extends Factory
      */
     public function definition(): array
     {
+        $motivo_contatos = MotivoContato::all();
+        $min = $motivo_contatos->first()->id;
+        $max = $motivo_contatos->last()->id;
         return [
             'nome' => fake()->name(),
             'telefone' => fake()->e164PhoneNumber(),
             'email' => fake()->unique()->email(),
-            'motivo_contato' => fake()->numberBetween(1,3),
+            'motivo_contatos_id' => fake()->numberBetween($min, $max),
             'mensagem' => fake()->text(200)
         ];
     }
