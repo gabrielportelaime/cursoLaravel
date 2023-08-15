@@ -1,17 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\LogAcessoMiddleware;
 
-// Route::get('/', function () {return 'Curso Laravel';});
-
-Route::middleware(LogAcessoMiddleware::class)
-    ->get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])
-    ->name('site.index');
-
-Route::middleware(LogAcessoMiddleware::class)
-    ->get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])
-    ->name('site.contato');
+Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'principal'])->name('site.index')->middleware('log.acesso');
+Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
 Route::post('/contato', [\App\Http\Controllers\ContatoController::class, 'salvar'])->name('site.contato');
 Route::get('/contato/{nome}/{assunto}/{categoria_id?}', 
     function(
@@ -24,10 +16,13 @@ Route::get('/sobre', [\App\Http\Controllers\SobreNosController::class, 'sobre'])
 
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
-Route::prefix('/app')->group(function(){
-    Route::get('/clientes',  function(){return 'Clientes';})->name('app.clientes');
-    Route::get('/fornecedores', [\App\Http\Controllers\FornecedorController::class, 'index'])->name('app.fornecedores');
-    Route::get('/produtos',  function(){return 'Produtos';})->name('app.produtos');
+Route::middleware('autenticacao')->prefix('/app')->group(function(){
+    Route::get('/clientes',  function(){return 'Clientes';})
+    ->name('app.clientes');
+    Route::get('/fornecedores', [\App\Http\Controllers\FornecedorController::class, 'index'])
+    ->name('app.fornecedores');
+    Route::get('/produtos',  function(){return 'Produtos';})
+    ->name('app.produtos');
 });
 
 Route::get('/teste/{p1}/{p2}', [\App\Http\Controllers\TesteController::class, 'teste'])->name('teste');
