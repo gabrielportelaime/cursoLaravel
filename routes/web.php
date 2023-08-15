@@ -14,7 +14,8 @@ Route::get('/contato/{nome}/{assunto}/{categoria_id?}',
 })->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');
 Route::get('/sobre', [\App\Http\Controllers\SobreNosController::class, 'sobre'])->name('site.sobrenos');
 
-Route::get('/login', function(){return 'Login';})->name('site.login');
+Route::get('/login/{erro?}', [\App\Http\Controllers\LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [\App\Http\Controllers\LoginController::class, 'autenticar'])->name('site.login');
 
 Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function(){
     Route::get('/clientes',  function(){return 'Clientes';})
