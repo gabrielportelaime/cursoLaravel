@@ -13,14 +13,15 @@ class AutenticacaoMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $metodo_autenticacao, $perfil): Response
     {
-        // return $next($request);
+        echo $metodo_autenticacao . "<br>" . $perfil . "<br>";
         $login = true;
-        if($login){
-            return $next($request);
+        if($metodo_autenticacao == 'padrao'){
+            echo 'Verificar o usuário e senha no banco de dados '.$perfil.'<br>';
         }else{
             return Response('Acesso negado! Rota exige autenticação!');
         }
+        return $next($request);
     }
 }
