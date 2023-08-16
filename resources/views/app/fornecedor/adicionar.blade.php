@@ -17,7 +17,7 @@
                 <form method="post" action="{{route('app.fornecedor.adicionar')}}">
                     <input type="hidden" name="id" value={{$fornecedor->id ?? ''}}>
                     @csrf
-                    <input type="text" name="nome" value="{{$fornecedor->nome ?? old('name')}}" placeholder="Nome" class="borda-preta">
+                    <input type="text" name="nome" value="{{$fornecedor->nome ?? old('nome')}}" placeholder="Nome" class="borda-preta">
                     {{$errors->has('nome') ? $errors->first('nome') : ''}}
                     <input type="text" name="site" value="{{$fornecedor->site ?? old('site')}}" placeholder="Site" class="borda-preta">
                     {{$errors->has('site') ? $errors->first('site') : ''}}
