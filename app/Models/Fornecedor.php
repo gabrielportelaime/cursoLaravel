@@ -16,4 +16,7 @@ class Fornecedor extends Model
     use SoftDeletes;
     //Para poder persistir os dados corretamente, pois a geração automática da tabela seria fornecedors --> errado
     use HasFactory;
+    public function produtos(){
+        return $this->hasMany('App\Models\Item', 'fornecedor_id', 'id');
+    }
 }
