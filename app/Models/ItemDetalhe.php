@@ -10,8 +10,8 @@ class ItemDetalhe extends Model
     protected $table = 'produto_detalhes';
     protected $fillable = ['produto_id', 'comprimento', 'largura' ,'altura', 'unidade_id'];
     use HasFactory;
-    public function produto(){
-        return $this->belongsTo('App\Models\Item');
+    public function item(){
+        return $this->belongsTo('App\Models\Item', 'produto_id', 'id');
         //fk item_id
     }
 }
