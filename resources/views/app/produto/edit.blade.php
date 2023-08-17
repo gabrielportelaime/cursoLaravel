@@ -8,13 +8,14 @@
         <div class="menu">
             <ul>
                 <li><a href="{{route('produto.index')}}">Voltar</a></li>
-                <li><a href="">Consulta</a></li>
+                <li><a href="{{route('produto.index')}}">Consulta</a></li>
             </ul>
         </div>
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right:auto;">
-                <form method="post" action="">
+                <form method="post" action="{{route('produto.update', ['produto' => $produto->id])}}">
                     @csrf
+                    @method('PUT')
                     <input type="text" name="nome" value="{{ $produto->nome ?? old('nome')}}" placeholder="Nome" class="borda-preta">
                     {{$errors->has('nome') ? $errors->first('nome') : ''}}
                     <input type="text" name="descricao" value="{{ $produto->descricao ?? old('descricao')}}" placeholder="Descrição" class="borda-preta">
